@@ -1,6 +1,6 @@
 /*
     Assessment Requirements
-    1. Create a variable that can hold a number of NFT's. What type of variable might this be? Ans: Array.
+    1. Create a variable that can hold a number of NFT's. What type of variable might this be?
     2. Create an object inside your mintNFT function that will hold the metadata for your NFTs. 
     The metadata values will be passed to the function as parameters. When the NFT is ready, 
     you will store it in the variable you created in step 1
@@ -14,15 +14,24 @@ const nftArray = [];
 // this function will take in some values as parameters, create an
 // NFT object using the parameters passed to it for its metadata, 
 // and store it in the variable above.
-function mintNFT (name, eyeColor, shirtType, bling) {
-    const nft = {
-        "name" : name,
-        "eyeColor" : eyeColor,
-        "shirtType" : shirtType,
-        "bling" : bling
+function mintNFT(name, eyeColor, shirtType, bling) {
+    try {
+        if (!name || !eyeColor || !shirtType || !bling) {
+            throw new Error("All metadata fields (name, eyeColor, shirtType, bling) are required.");
+        }
+
+        const nft = {
+            "name": name,
+            "eyeColor": eyeColor,
+            "shirtType": shirtType,
+            "bling": bling
+        };
+
+        nftArray.push(nft);
+        console.log("Minted:", name);
+    } catch (error) {
+        console.error("Error:", error.message);
     }
-    nftArray.push(nft);
-    console.log("Minted:", name);
 }
 
 // create a "loop" that will go through an "array" of NFT's
